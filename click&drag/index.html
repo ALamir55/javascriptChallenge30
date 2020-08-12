@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Click and Drag - #27/30</title>
+	</head>
+	<body>
+		<div class="items">
+			<div class="item item-1">01</div>
+			<div class="item item-2">02</div>
+			<div class="item item-3">03</div>
+			<div class="item item-4">04</div>
+			<div class="item item-5">05</div>
+			<div class="item item-6">06</div>
+			<div class="item item-7">07</div>
+			<div class="item item-8">08</div>
+			<div class="item item-9">09</div>
+			<div class="item item-10">10</div>
+			<div class="item item-11">11</div>
+			<div class="item item-12">12</div>
+			<div class="item item-13">13</div>
+			<div class="item item-14">14</div>
+			<div class="item item-15">15</div>
+			<div class="item item-16">16</div>
+			<div class="item item-17">17</div>
+			<div class="item item-18">18</div>
+			<div class="item item-19">19</div>
+			<div class="item item-20">20</div>
+			<div class="item item-21">21</div>
+			<div class="item item-22">22</div>
+			<div class="item item-23">23</div>
+			<div class="item item-24">24</div>
+			<div class="item item-25">25</div>
+		</div>
+
+		<script>
+			const slider = document.querySelector(".items");
+			let isDown = false;
+			let startX;
+			let scrollLeft;
+
+			slider.addEventListener("mousedown", (e) => {
+				isDown = true;
+				slider.classList.add("active");
+				startX = e.pageX - slider.offsetLeft;
+				scrollLeft = slider.scrollLeft;
+			});
+
+			slider.addEventListener("mouseleave", () => {
+				isDown = false;
+				slider.classList.remove("active");
+			});
+
+			slider.addEventListener("mouseup", () => {
+				isDown = false;
+				slider.classList.remove("active");
+			});
+
+			slider.addEventListener("mousemove", (e) => {
+				if (!isDown) return; // stop the fn from running
+				e.stopPropagation();
+				const x = e.pageX - slider.offsetLeft;
+				const walk = (x - startX) * 3;
+				slider.scrollLeft = scrollLeft - walk;
+			});
+		</script>
+	</body>
+</html>
